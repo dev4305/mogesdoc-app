@@ -1,6 +1,7 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { environment } from 'src/environments/environment.dev';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +12,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://172.21.38.38:3900',
-        realm: 'mogesdoc',
-        clientId: 'moges-app'
+        url: 'http://'+environment.keycloakIP+':'+environment.keycloakPort+'',
+        realm: environment.keycloakRealm,
+        clientId: environment.keycloakClientId
       },
       initOptions: {
         onLoad: 'check-sso',

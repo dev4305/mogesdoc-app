@@ -6,8 +6,8 @@ import { RestrictedSpaceComponent } from './restricted-space/restricted-space.co
 
 const routes: Routes = [
   {path:'public', component: PublicSpaceComponent},
-  {path:'restricted', component: RestrictedSpaceComponent, canActivate: [KeycloakGuard]},
-  {path: '**', component: PublicSpaceComponent}
+  {path:'restricted', component: RestrictedSpaceComponent},
+  {path: '**', component: PublicSpaceComponent, canActivate: [KeycloakGuard]}
 ];
 
 @NgModule({
