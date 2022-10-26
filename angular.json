@@ -20,6 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["crypto-js","js-sha256","base64-js"],
             "outputPath": "dist/app-mogesdoc",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,7 +32,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/theme/theme-teal-yellow.css"
             ],
             "scripts": []
           },
@@ -112,7 +114,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.js"
+            ]
           }
         }
       }
