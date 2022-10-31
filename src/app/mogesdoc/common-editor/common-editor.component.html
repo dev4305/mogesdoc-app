@@ -1,0 +1,49 @@
+<!--<editor
+[init]="{
+  height: 500,
+  menubar: true,
+  selector: 'textarea',
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount',
+    'table','insertdatetime','autosave'
+  ],
+  content_langs: [
+      { title: 'Spanish', code: 'es' },
+  ],
+  contextmenu: 'link image imagetools table spellchecker lists',
+  toolbar:
+    'undo redo | formatselect | bold italic backcolor | \
+    alignleft aligncenter alignright alignjustify | \
+    bullist numlist outdent indent | removeformat | help | insertdatetime | restoredraft | language  \
+    addcomment '
+}"
+></editor>-->
+
+<editor
+(onSaveContent)="guardarContenido()"
+[(ngModel)]="html"
+[init]="{
+  height: 500,
+  menubar: true,
+  selector: 'textarea',
+  plugins: [
+    'insertdatetime',
+    'table','insertdatetime'
+  ],
+  content_langs: [
+      { title: 'Spanish', code: 'es' },
+  ],
+  contextmenu: 'link image imagetools table spellchecker lists',
+  toolbar:
+    'save | undo redo | formatselect | bold italic backcolor | \
+    alignleft aligncenter alignright alignjustify | \
+    bullist numlist outdent indent | removeformat | help | insertdatetime | restoredraft | language  \
+    addcomment '
+}"
+></editor>
+
+<p></p>
+<p></p>
+<button pButton pRipple type="button" label="Guardar Contenido" style="height: 120px; width: 100%;" class="mr-6 mb-6" (click)="guardarContenido()"></button>

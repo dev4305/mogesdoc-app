@@ -100,6 +100,8 @@ import { MenuService } from './app.menu.service';
 import { AppMainComponent } from './app.main.component';
 import { AppMenuComponent } from './app.menu.component';
 import { AppMenuitemComponent } from './app.menuitem.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -206,7 +208,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     TooltipModule,
     TreeModule,
     TreeTableModule,
-    VirtualScrollerModule
+    VirtualScrollerModule,
+    EditorModule
   ],
   declarations: [
     AppComponent,
@@ -216,7 +219,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppMenuComponent,
     AppMenuitemComponent,
     PublicSpaceComponent,
-    RestrictedSpaceComponent
+    RestrictedSpaceComponent,
+    CommonEditorComponent
   ],
   providers: [
     {
@@ -224,7 +228,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService]
-    },MenuService
+    },
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
+    MenuService
   ],
   bootstrap: [AppComponent]
 })
