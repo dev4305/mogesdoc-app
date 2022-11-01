@@ -68,6 +68,14 @@
                 }
               ]
             },
+            "local":{
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -90,6 +98,10 @@
             },
             "dev": {
               "browserTarget": "app-mogesdoc:build:dev"
+            },
+            "local": {
+              "browserTarget": "app-mogesdoc:build:local",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

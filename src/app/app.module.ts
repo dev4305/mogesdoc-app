@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, Component } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { environment } from 'src/environments/environment.dev';
+//import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment.local';
 
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -102,12 +103,13 @@ import { AppMenuComponent } from './app.menu.component';
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
+import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/tipo-correspondencia.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://'+environment.keycloakIP+':'+environment.keycloakPort+'',
+        url: 'http://'+environment.keycloakIP+':'+environment.keycloakPort,
         realm: environment.keycloakRealm,
         clientId: environment.keycloakClientId
       },
@@ -220,7 +222,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppMenuitemComponent,
     PublicSpaceComponent,
     RestrictedSpaceComponent,
-    CommonEditorComponent
+    CommonEditorComponent,
+    TipoCorrespondenciaComponent
   ],
   providers: [
     {

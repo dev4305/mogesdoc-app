@@ -14,12 +14,13 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+            {label: 'Editor', icon: 'pi pi-fw pi-id-card', routerLink: ['mogesdoc/editor']},
             {
-                label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'], badge: 8,
-                items: [
-                    {label: 'Editor', icon: 'pi pi-fw pi-id-card', routerLink: ['mogesdoc/editor']}
-                ]
-            },
+              label: 'Catálogos', icon: 'pi pi-fw pi-list',
+              items:[
+                {label: 'Tipo Correspondencia', icon: 'pi pi-fw pi-inbox', routerLink: ['mogesdoc/tipoCorrespondencia']},
+              ]
+            }
         ];
     }
 

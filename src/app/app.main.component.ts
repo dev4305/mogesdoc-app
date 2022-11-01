@@ -3,6 +3,7 @@ import { MenuService } from './app.menu.service';
 import { AppComponent } from './app.component';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
+import { environment } from 'src/environments/environment.local';
 
 @Component({
     selector: 'app-main',
@@ -226,8 +227,9 @@ export class AppMainComponent {
     username() {
         return this.keycloakService.getUsername();
     }
-    
+
     public logOut() {
-        this.keycloakService.logout('http://172.21.38.38:9600');
+        //this.keycloakService.logout('http://172.21.38.38:9600');
+        this.keycloakService.logout('http://localhost:9600');
     }
 }
