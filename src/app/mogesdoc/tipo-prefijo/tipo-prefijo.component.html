@@ -1,0 +1,117 @@
+<div class="grid">
+  <div class="col-12 md:col-6">
+    <div class="card p-fluid">
+      <h4>Tipo Prefijo</h4>
+
+      <div class="field">
+				<label htmlFor="nombre">Nombre</label>
+				<input pInputText id="nombre" type="text" [(ngModel)]="tipoPrefijo.nombre" />
+			</div>
+
+      <div class="field">
+				<label htmlFor="estado">Estado</label>
+        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="estadoSelected"></p-dropdown>
+			</div>
+
+      <button pButton pRipple label="Registrar" (click)="registrarTipoPrefijo()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Tipo Correspondencia</h5>
+      <p-table #dt1 [value]="tiposPrefijo" dataKey="id_tipo_prefijo" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['id_tipo_prefijo','nombre','estado']" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+          <div class="flex justify-content-between flex-column sm:flex-row">
+            <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search Keyword" class="w-full"/>
+						</span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+								Id
+								<p-columnFilter type="text" field="id_tipo_prefijo" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
+							</div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+								Nombre
+								<p-columnFilter type="text" field="nombre" display="menu" placeholder="Búsqueda por Nombre"></p-columnFilter>
+							</div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                Estado
+                <p-columnFilter field="estado" matchMode="equals" display="menu">
+                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
+                      <ng-template let-option pTemplate="item">
+                        <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                      </ng-template>
+                    </p-dropdown>
+                  </ng-template>
+                </p-columnFilter>
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+								Acción
+							</div>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tipoPref>
+          <tr>
+            <td style="min-width: 12rem;">
+							{{tipoPref.id_tipo_prefijo}}
+						</td>
+            <td style="min-width: 12rem;">
+							{{tipoPref.nombre}}
+						</td>
+            <td style="min-width: 12rem;">
+              <div [ngSwitch]="tipoPref.estado">
+                <span *ngSwitchCase="true" [class]="'customer-badge status-activo'">Activo</span>
+                <span *ngSwitchCase="false" [class]="'customer-badge status-inactivo'">Inactivo</span>
+              </div>
+						</td>
+            <td>
+              <div class="flex">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editTipoPrefijo(tipoPref)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="eliminarTipoPrefijo(product)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="tipoPrefijoDialog" [style]="{width: '450px'}" header="Editar Tipo Prefijo" [modal]="true" class="p-fluid">
+  <div class="grid">
+    <div class="col-12">
+      <div class="card p-fluid">
+        <h4>Tipo Prefijo</h4>
+      </div>
+
+      <div class="field">
+        <label htmlFor="nombre">Nombre</label>
+        <input pInputText id="nombre" type="text" [(ngModel)]="eTipoPrefijo.nombre" />
+      </div>
+
+      <div class="field">
+        <label htmlFor="estado">Estado</label>
+        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="estadoSelected"></p-dropdown>
+      </div>
+
+      <button pButton pRipple label="Actualizar" (click)="updateTipoPrefijo()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+    </div>
+  </div>
+</p-dialog>

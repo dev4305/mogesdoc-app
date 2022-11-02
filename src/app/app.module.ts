@@ -104,6 +104,7 @@ import { AppMenuitemComponent } from './app.menuitem.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
 import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/tipo-correspondencia.component';
+import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -223,7 +224,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     PublicSpaceComponent,
     RestrictedSpaceComponent,
     CommonEditorComponent,
-    TipoCorrespondenciaComponent
+    TipoCorrespondenciaComponent,
+    TipoPrefijoComponent
   ],
   providers: [
     {

@@ -230,6 +230,7 @@ export class AppMainComponent {
 
     public logOut() {
         //this.keycloakService.logout('http://172.21.38.38:9600');
+        this.keycloakService.clearToken();
         this.keycloakService.logout('http://localhost:9600');
     }
 }

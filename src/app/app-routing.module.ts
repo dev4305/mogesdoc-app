@@ -7,15 +7,15 @@ import { AppMainComponent } from './app.main.component';
 import { KeycloakGuard } from './keycloak.guard';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
 import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/tipo-correspondencia.component';
-import { PublicSpaceComponent } from './public-space/public-space.component';
-import { RestrictedSpaceComponent } from './restricted-space/restricted-space.component';
+import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.component';
 
 const routes: Routes = [
   {
     path: '', component: AppMainComponent,canActivate: [KeycloakGuard],
     children:[
       {path:'mogesdoc/editor', component: CommonEditorComponent},
-      {path:'mogesdoc/tipoCorrespondencia', component: TipoCorrespondenciaComponent}
+      {path:'mogesdoc/tipoCorrespondencia', component: TipoCorrespondenciaComponent},
+      {path:'mogesdoc/tipoPrefijo', component: TipoPrefijoComponent}
     ]
   }
 

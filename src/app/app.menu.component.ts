@@ -19,6 +19,7 @@ export class AppMenuComponent implements OnInit {
               label: 'Catálogos', icon: 'pi pi-fw pi-list',
               items:[
                 {label: 'Tipo Correspondencia', icon: 'pi pi-fw pi-inbox', routerLink: ['mogesdoc/tipoCorrespondencia']},
+                {label: 'Tipo Prefijo', icon: 'pi pi-fw pi-bookmark', routerLink: ['mogesdoc/tipoPrefijo']}
               ]
             }
         ];
