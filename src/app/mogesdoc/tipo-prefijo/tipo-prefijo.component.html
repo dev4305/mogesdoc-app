@@ -18,6 +18,8 @@
   </div>
 </div>
 
+<p-messages [value]="msgs"></p-messages>
+
 <div class="grid">
 	<div class="col-12">
 		<div class="card">
@@ -37,7 +39,7 @@
             <th>
               <div class="flex justify-content-between align-items-center">
 								Id
-								<p-columnFilter type="text" field="id_tipo_prefijo" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
+								<p-columnFilter type="text" field="id" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
 							</div>
             </th>
             <th>
@@ -70,21 +72,20 @@
         <ng-template pTemplate="body" let-tipoPref>
           <tr>
             <td style="min-width: 12rem;">
-							{{tipoPref.id_tipo_prefijo}}
+							{{tipoPref.id}}
 						</td>
             <td style="min-width: 12rem;">
 							{{tipoPref.nombre}}
 						</td>
             <td style="min-width: 12rem;">
               <div [ngSwitch]="tipoPref.estado">
-                <span *ngSwitchCase="true" [class]="'customer-badge status-activo'">Activo</span>
-                <span *ngSwitchCase="false" [class]="'customer-badge status-inactivo'">Inactivo</span>
+                <span *ngSwitchCase="'A'" [class]="'customer-badge status-activo'">Activo</span>
+                <span *ngSwitchCase="'I'" [class]="'customer-badge status-inactivo'">Inactivo</span>
               </div>
 						</td>
             <td>
               <div class="flex">
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editTipoPrefijo(tipoPref)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="eliminarTipoPrefijo(product)"></button>
               </div>
             </td>
           </tr>
@@ -95,6 +96,7 @@
 </div>
 
 <p-dialog [(visible)]="tipoPrefijoDialog" [style]="{width: '450px'}" header="Editar Tipo Prefijo" [modal]="true" class="p-fluid">
+  <p-messages [value]="msgs"></p-messages>
   <div class="grid">
     <div class="col-12">
       <div class="card p-fluid">

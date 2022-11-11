@@ -1,5 +1,5 @@
 export class TipoPrefijo {
-  id_tipo_pefijo!: number;
+  id!: number;
   nombre!: string;
-  estado!: boolean;
+  estado!: string;
 }
