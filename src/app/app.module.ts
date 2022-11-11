@@ -106,6 +106,7 @@ import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.co
 import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/tipo-correspondencia.component';
 import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.component';
 import { environment } from 'src/environments/environment';
+import { PaisComponent } from './mogesdoc/region/pais/pais.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -226,7 +227,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     RestrictedSpaceComponent,
     CommonEditorComponent,
     TipoCorrespondenciaComponent,
-    TipoPrefijoComponent
+    TipoPrefijoComponent,
+    PaisComponent
   ],
   providers: [
     {

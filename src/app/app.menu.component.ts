@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
                 {
                     label: 'Region', icon:'pi pi-fw pi-map',
                     items:[
-                        {label: 'Pais',  icon:'pi pi-fw pi-map', routerLink: ['/a']},
+                        {label: 'Pais',  icon:'pi pi-fw pi-map', routerLink: ['mogesdoc/region/pais']},
                         {label: 'Departamento',  icon:'pi pi-fw pi-map', routerLink: ['/b']},
                         {label: 'Municipio',  icon:'pi pi-fw pi-map', routerLink: ['/c']}
                     ]

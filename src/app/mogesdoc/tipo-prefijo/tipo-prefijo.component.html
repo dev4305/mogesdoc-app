@@ -24,13 +24,13 @@
 	<div class="col-12">
 		<div class="card">
 			<h5>Tipo Correspondencia</h5>
-      <p-table #dt1 [value]="tiposPrefijo" dataKey="id_tipo_prefijo" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['id_tipo_prefijo','nombre','estado']" responsiveLayout="scroll">
+      <p-table #dt1 [value]="tiposPrefijo" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['id_tipo_prefijo','nombre','estado']" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
           <div class="flex justify-content-between flex-column sm:flex-row">
             <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
             <span class="p-input-icon-left mb-2">
 							<i class="pi pi-search"></i>
-							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search Keyword" class="w-full"/>
+							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Búsqueda" class="w-full"/>
 						</span>
           </div>
         </ng-template>

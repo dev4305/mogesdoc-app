@@ -46,12 +46,15 @@ export class TipoPrefijoComponent implements OnInit {
   }
 
   obtenerListadoTipoPrefijo() {
-    this.tipoPrefijoService.getAllTipoPrefijo().subscribe((data) => {
-      this.loading = false;
-      this.tipos = data;
-      console.log('data:  ',data);
-      for(let i=0; i<this.tipos.length; i++){
-        this.tiposPrefijo.push(this.tipos[i]);
+    this.tipoPrefijoService.getAllTipoPrefijo().subscribe({
+      next: data=>{
+        this.loading = false;
+        if(null!=data){
+          this.tipos = data;
+          for(let i=0; i<this.tipos.length; i++){
+            this.tiposPrefijo.push(this.tipos[i]);
+          } 
+        }
       }
     });
   }
@@ -64,14 +67,12 @@ export class TipoPrefijoComponent implements OnInit {
       complete: () => {
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'Creación de Registro', detail: 'Registro Creado Exitosamente en el Sistema.' });
-        //window.location.reload();
         this.tiposPrefijo = [];
         this.obtenerListadoTipoPrefijo();
       },
       error: (e) => {
         this.msgs = [];
         this.msgs.push({ severity: 'error', summary: 'Error en Registro', detail: 'Validar el Contenido del Registro.' });
-        
       }
     });
 
@@ -84,14 +85,13 @@ export class TipoPrefijoComponent implements OnInit {
 
   updateTipoPrefijo(){
     this.eTipoPrefijo.estado = this.estadoSelected.code;
-    console.log('00000   00000  00000  00000   ',this.eTipoPrefijo);
     this.tipoPrefijoService.updateTipoPrefijo(this.eTipoPrefijo).subscribe({
       complete: () => {
         this.msgs = [];
         this.msgs.push({ severity: 'success', summary: 'Actualización de Registro', detail: 'Registro Actualizado Exitosamente en el Sistema.' });
         this.tiposPrefijo = [];
-        this.obtenerListadoTipoPrefijo();
         this.tipoPrefijoDialog = false;
+        window.location.reload();
       },
       error: (e) => {
         this.msgs = [];
