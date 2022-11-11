@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Message } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { TipoCorrespondencia } from 'src/app/model/tipoCorrespondencia';
 import { TipoCorrespondenciaService } from 'src/app/service/tipo-correspondencia.service';
@@ -14,6 +15,8 @@ export class TipoCorrespondenciaComponent implements OnInit {
 
   tipoCorresDialog: boolean = false;
 
+  msgs: Message[] = [];
+
   estado: any = null;
   nombre: string = '';
   descripcion: string = '';
@@ -26,9 +29,9 @@ export class TipoCorrespondenciaComponent implements OnInit {
   loading:boolean = true;
 
   dropdownItems = [
-    { name: '-', code: false },
-    { name: 'Activo', code: true },
-    { name: 'Inactivo', code: false }
+    { name: '_', code: 'N' },
+    { name: 'Activo', code: 'A' },
+    { name: 'Inactivo', code: 'I' }
   ];
 
   statuses!: any[];
@@ -38,8 +41,8 @@ export class TipoCorrespondenciaComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerListadoTipoCorrespondencia();
     this.statuses = [
-      {label: 'Activo', value: true},
-      {label: 'Inactivo', value: false}
+      {label: 'Activo', value: 'A'},
+      {label: 'Inactivo', value: 'I'}
     ];
   }
 
@@ -58,10 +61,19 @@ export class TipoCorrespondenciaComponent implements OnInit {
     tipoC.estado = this.estado.code;
     tipoC.descripcion = this.descripcion;
     tipoC.nombre = this.nombre;
-    this.tipoCorrespondencia.createTipoCorrespondencia(tipoC).subscribe(data => {
-      let contenido = data;
-    });
-    window.location.reload();
+    this.tipoCorrespondencia.createTipoCorrespondencia(tipoC).subscribe(
+      {
+        error: (e) => {
+          this.msgs = [];
+          this.msgs.push({ severity: 'error', summary: 'Error en Registro', detail: 'Validar el Contenido del Registro.' });
+        },
+        complete: () => {
+          this.msgs = [];
+          this.msgs.push({ severity: 'success', summary: 'Creación de Registro', detail: 'Registro Creado Exitosamente en el Sistema.' });
+          window.location.reload();
+        }
+      }
+    );
   }
 
   clear(table: Table) {
@@ -70,15 +82,25 @@ export class TipoCorrespondenciaComponent implements OnInit {
   }
 
   editTipoCorrespondencia(tipocorres: TipoCorrespondencia){
+    this.estadoSelected.code = tipocorres.estado;
     this.tipoCorresDialog = true;
     this.eTipoCorrespondencia = {...tipocorres};
-    this.eTipoCorrespondencia.estado = this.estadoSelected.code;
   }
 
   updateTipoCorrespondencia(){
-    this.tipoCorrespondencia.updateTipoCorrespondencia(this.eTipoCorrespondencia).subscribe(data =>{});
+    this.eTipoCorrespondencia.estado = this.estadoSelected.code;
+    this.tipoCorrespondencia.updateTipoCorrespondencia(this.eTipoCorrespondencia).subscribe({
+      next: (v) => {
+        this.tipoCorresDialog = false;
+        window.location.reload();
+      },
+      error: (e) => {
+        console.log('   ', e);
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Error en Registro', detail: 'Validar el Contenido del Registro. '+e.message+'\n'+e.error.error});
+      },
+      complete: () => console.info('complete') 
+    });
   }
-
-  eliminarTipoCorrespondencia(){}
 
 }

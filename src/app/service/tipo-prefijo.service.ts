@@ -11,7 +11,8 @@ export class TipoPrefijoService {
 
   getAllTipoPrefijo() {
     const headers = {'Accept': 'application/json'};
-    return this.http.get('/api/Tipo_Prefijo');
+    //return this.http.get('http://carsma-001-site1.htempurl.com/api/Tipo_Prefijo');
+    return this.http.get('');
   }
 
   createTipoPrefijo(tipoPrefijo: TipoPrefijo) {

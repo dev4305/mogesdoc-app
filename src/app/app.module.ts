@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, Component } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 //import { environment } from 'src/environments/environment.dev';
-import { environment } from 'src/environments/environment.local';
+//import { environment } from 'src/environments/environment.local';
 
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -105,6 +105,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
 import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/tipo-correspondencia.component';
 import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.component';
+import { environment } from 'src/environments/environment';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>

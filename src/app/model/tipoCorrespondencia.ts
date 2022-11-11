@@ -1,6 +1,6 @@
 export class TipoCorrespondencia {
-  id_tipo_correspondencia!: number;
+  id!: number;
   nombre!: string;
-  estado!: boolean;
+  estado!: string;
   descripcion!: string;
 }
