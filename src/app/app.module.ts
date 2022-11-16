@@ -107,6 +107,7 @@ import { TipoCorrespondenciaComponent } from './mogesdoc/tipo-correspondencia/ti
 import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.component';
 import { environment } from 'src/environments/environment';
 import { PaisComponent } from './mogesdoc/region/pais/pais.component';
+import { DepartamentoComponent } from './mogesdoc/region/departamento/departamento.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -228,7 +229,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CommonEditorComponent,
     TipoCorrespondenciaComponent,
     TipoPrefijoComponent,
-    PaisComponent
+    PaisComponent,
+    DepartamentoComponent
   ],
   providers: [
     {
