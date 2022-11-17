@@ -17,6 +17,11 @@ export class DepartamentoService {
     return this.http.get(this.uri+'/departamentos',{headers: headers});
   }
 
+  getMunicipiosByPais(idPais: number){
+    const headers = {'Accept': 'application/json'};
+    return this.http.get(this.uri+'/departamentos/findByPais/'+idPais,{headers: headers});
+  }
+
   crearDepartamento(departamento: Departamento){
     const headers = {'Content-Type': 'application/json'};
     const body = JSON.stringify(departamento);

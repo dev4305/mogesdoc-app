@@ -108,6 +108,7 @@ import { TipoPrefijoComponent } from './mogesdoc/tipo-prefijo/tipo-prefijo.compo
 import { environment } from 'src/environments/environment';
 import { PaisComponent } from './mogesdoc/region/pais/pais.component';
 import { DepartamentoComponent } from './mogesdoc/region/departamento/departamento.component';
+import { MunicipioComponent } from './mogesdoc/region/municipio/municipio.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -230,7 +231,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     TipoCorrespondenciaComponent,
     TipoPrefijoComponent,
     PaisComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    MunicipioComponent
   ],
   providers: [
     {
