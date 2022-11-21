@@ -6,6 +6,7 @@ import { KeycloakAngularModule } from 'keycloak-angular';
 import { AppMainComponent } from './app.main.component';
 import { KeycloakGuard } from './keycloak.guard';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
+import { OrganizacionComponent } from './mogesdoc/organizacion/organizacion/organizacion.component';
 import { DepartamentoComponent } from './mogesdoc/region/departamento/departamento.component';
 import { MunicipioComponent } from './mogesdoc/region/municipio/municipio.component';
 import { PaisComponent } from './mogesdoc/region/pais/pais.component';
@@ -25,6 +26,11 @@ const routes: Routes = [
           {path: 'departamento', component: DepartamentoComponent},
           {path: 'municipio',component: MunicipioComponent, canActivate: [KeycloakGuard]}
         ],canActivate: [KeycloakGuard]
+      },
+      {
+        path: 'mogesdoc/organizacion', children: [
+          {path: 'organizacion', component: OrganizacionComponent}
+        ]
       }
     ]
   }

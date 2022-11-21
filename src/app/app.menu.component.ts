@@ -27,6 +27,12 @@ export class AppMenuComponent implements OnInit {
                         {label: 'Departamento',  icon:'pi pi-fw pi-map', routerLink: ['mogesdoc/region/departamento']},
                         {label: 'Municipio',  icon:'pi pi-fw pi-map', routerLink: ['mogesdoc/region/municipio']}
                     ]
+                },
+                {
+                    label: 'Organización', icon: 'pi pi-fw pi-tree',
+                    items:[
+                        {label: 'Organización', icon: 'pi pi-fw pi-map', routerLink: ['mogesdoc/organizacion/organizacion']}
+                    ]
                 }
               ]
             }
