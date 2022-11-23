@@ -110,6 +110,7 @@ import { PaisComponent } from './mogesdoc/region/pais/pais.component';
 import { DepartamentoComponent } from './mogesdoc/region/departamento/departamento.component';
 import { MunicipioComponent } from './mogesdoc/region/municipio/municipio.component';
 import { OrganizacionComponent } from './mogesdoc/organizacion/organizacion/organizacion.component';
+import { AreaComponent } from './mogesdoc/organizacion/area/area.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -234,7 +235,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     PaisComponent,
     DepartamentoComponent,
     MunicipioComponent,
-    OrganizacionComponent
+    OrganizacionComponent,
+    AreaComponent
   ],
   providers: [
     {

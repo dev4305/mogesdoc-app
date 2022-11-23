@@ -1,0 +1,121 @@
+<div class="grid">
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <h4>Área</h4>
+
+            <div class="field">
+                <label htmlFor="nombre">Código</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="area.codigo" />
+            </div>
+
+            <div class="field">
+                <label htmlFor="nombre">Nombre</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="area.nombre" />
+            </div>
+
+            <div class="field">
+                <label htmlFor="organizacion">organización</label>
+                <p-dropdown [options]="organizaciones" optionLabel="nombre" [(ngModel)]="organizacionSelected"></p-dropdown>
+            </div>
+
+            <button pButton pRipple label="Registrar" (click)="registrarArea()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+        </div>
+    </div>
+</div>
+
+<p-messages [value]="msgs"></p-messages>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Áreas de la Organización</h5>
+            <p-table #dt1 [value]="areas" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['id','codigo','nombre']" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                        <span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Búsqueda" class="w-full"/>
+						</span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Id
+                                <p-columnFilter type="text" field="id" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Código
+                                <p-columnFilter type="text" field="codigo" display="menu" placeholder="Búsqueda por Código"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Nombre
+                                <p-columnFilter type="text" field="nombre" display="menu" placeholder="Búsqueda por Código"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Organizacion
+                                <p-columnFilter type="text" field="organizacion.nombre" display="menu" placeholder="Búsqueda por Código"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Acción
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-areaItem>
+                    <tr>
+                        <td style="min-width: 12rem;">
+							{{areaItem.id}}
+						</td>
+                        <td style="min-width: 12rem;">
+                            {{areaItem.codigo}}
+                        </td>
+                        <td style="min-width: 12rem;">
+                            {{areaItem.nombre}}
+                        </td>
+                        <td style="min-width: 12rem;">
+                            {{areaItem.organizacion.nombre}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editarArea(areaItem)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="areaDialog" [style]="{width: '450px', height: '700px'}" header="Editar Área de la Organización" [modal]="true" class="p-fluid">
+    <p-messages [value]="msgs"></p-messages>
+    <div class="grid">
+        <div class="col-12">
+            <div class="card p-fluid">
+                <h4>Área de la Organización</h4>
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Código</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="eArea.codigo" />
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Nombre</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="eArea.nombre" />
+            </div>
+
+            <button pButton pRipple label="Actualizar" (click)="updateArea()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+        </div>
+    </div>
+</p-dialog>
