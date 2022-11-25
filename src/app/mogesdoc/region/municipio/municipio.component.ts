@@ -87,7 +87,7 @@ export class MunicipioComponent implements OnInit {
     
     let idPais = 0;
     if(undefined !=this.paisSelected ){
-      idPais = this.paisSelected.id
+      idPais = this.paisSelected.id;
     }else{
       idPais = this.ePais.id;
       this.eDepartamentos = [];

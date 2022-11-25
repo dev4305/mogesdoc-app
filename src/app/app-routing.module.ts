@@ -8,6 +8,7 @@ import { KeycloakGuard } from './keycloak.guard';
 import { CommonEditorComponent } from './mogesdoc/common-editor/common-editor.component';
 import { AreaComponent } from './mogesdoc/organizacion/area/area.component';
 import { OrganizacionComponent } from './mogesdoc/organizacion/organizacion/organizacion.component';
+import { UnidadComponent } from './mogesdoc/organizacion/unidad/unidad.component';
 import { DepartamentoComponent } from './mogesdoc/region/departamento/departamento.component';
 import { MunicipioComponent } from './mogesdoc/region/municipio/municipio.component';
 import { PaisComponent } from './mogesdoc/region/pais/pais.component';
@@ -31,7 +32,8 @@ const routes: Routes = [
       {
         path: 'mogesdoc/organizacion', children: [
           {path: 'organizacion', component: OrganizacionComponent},
-          {path: 'area', component: AreaComponent}
+          {path: 'area', component: AreaComponent},
+          {path: 'unidad', component: UnidadComponent}
         ]
       }
     ]

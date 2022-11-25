@@ -1,0 +1,172 @@
+<div class="grid">
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <h4>Unidad de la Organización</h4>
+
+            <div class="field">
+                <label htmlFor="organizacion">Organización</label>
+                <p-dropdown [options]="organizaciones" optionLabel="nombre" [(ngModel)]="organizacionSelected" (onChange)="obtenerAreas()"></p-dropdown>
+            </div>
+
+            <div class="field">
+                <label htmlFor="area">Área</label>
+                <p-dropdown [options]="areas" optionLabel="nombre" [(ngModel)]="areaSelected"></p-dropdown>
+            </div>
+
+            <div class="field">
+                <label htmlFor="codigo">Código</label>
+                <input pInputText id="codigo" type="text" [(ngModel)]="unidad.codigo" />
+            </div>
+
+            <div class="field">
+                <label htmlFor="nombre">Nombre Unidad</label>
+                <input pInputText id="codigo" type="text" [(ngModel)]="unidad.nombre" />
+            </div>
+
+            <div class="field">
+                <label htmlFor="estado">Descripción</label>
+                <input pInputText id="codigo" type="text" [(ngModel)]="unidad.descripcion" />
+            </div>
+
+            <div class="field">
+				<label htmlFor="estado">Estado</label>
+                <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="estadoSelected"></p-dropdown>
+			</div>
+
+            <button pButton pRipple label="Registrar" (click)="registrarUnidad()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+
+        </div>
+    </div>
+</div>
+
+<p-messages [value]="msgs"></p-messages>
+
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Unidades Organizacionales</h5>
+            <p-table #dt1 [value]="unidades" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['id','codigo','nombre','estado']" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                        <span class="p-input-icon-left mb-2">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Búsqueda" class="w-full"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Id
+                                <p-columnFilter type="text" field="id" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Código
+                                <p-columnFilter type="text" field="codigo" display="menu" placeholder="Búsqueda por Código"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Nombre
+                                <p-columnFilter type="text" field="nombre" display="menu" placeholder="Búsqueda por Nombre"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Estado
+                                <p-columnFilter type="text" field="estado" display="menu" placeholder="Búsqueda por Estado"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Descripción
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Área
+                                <p-columnFilter type="text" field="area.nombre" display="menu" placeholder="Búsqueda por Id"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex justify-content-between align-items-center">
+                                Acción
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-unidadItem>
+                    <tr>
+                        <td style="min-width: 12rem;">
+							{{unidadItem.id}}
+						</td>
+                        <td style="min-width: 12rem;">
+							{{unidadItem.codigo}}
+						</td>
+                        <td style="min-width: 12rem;">
+                            {{unidadItem.nombre}}
+                        </td>
+                        <td style="min-width: 12rem;">
+                            <div [ngSwitch]="unidadItem.estado">
+                              <span *ngSwitchCase="'A'" [class]="'customer-badge status-activo'">Activo</span>
+                              <span *ngSwitchCase="'I'" [class]="'customer-badge status-inactivo'">Inactivo</span>
+                            </div>
+                        </td>
+                        <td style="min-width: 12rem;">
+                            {{unidadItem.descripcion}}
+                        </td>
+                        <td style="min-width: 12rem;">
+                            {{unidadItem.area.nombre}}
+                        </td>
+                        
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editarUnidad(unidadItem)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="unidadDialog" [maximizable]="true" [style]="{width: '450px', height: '700px'}" header="Editar Unidad" [modal]="true" class="p-fluid">
+    <p-messages [value]="msgs"></p-messages>
+    <div class="grid">
+        <div class="col-12">
+            <div class="card p-fluid">
+                <h4>Unidad Organizacional</h4>
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Código</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="eUnidad.codigo" />
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Nombre</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="eUnidad.nombre" />
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Descripción</label>
+                <input pInputText id="nombre" type="text" [(ngModel)]="eUnidad.descripcion" />
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Organización</label>
+                <p-dropdown [options]="organizaciones" optionLabel="nombre" [(ngModel)]="eOrganizacion" (onChange)="obtenerAreas()"></p-dropdown>
+            </div>
+            <div class="field">
+                <label htmlFor="nombre">Área</label>
+                <p-dropdown [options]="eAreas" optionLabel="nombre" [(ngModel)]="eArea"></p-dropdown>
+            </div>
+            <div class="field">
+				<label htmlFor="estado">Estado</label>
+                <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="estadoSelected"></p-dropdown>
+			</div>
+            <button pButton pRipple label="Actualizar" (click)="updateUnidad()" style="font-size: 2rem;" iconPos="right" class="mr-6 mb-6"><i class="pi pi-save" style="font-size: 2em;"></i></button>
+        </div>
+    </div>
+</p-dialog>

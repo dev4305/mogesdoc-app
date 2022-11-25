@@ -1,32 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Municipio } from '../model/municipio';
+import { Unidad } from '../model/unidad';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MunicipioService {
+export class UnidadService {
 
   private uri = 'http://'+environment.backendIP+':'+environment.backendPort+environment.backendVersion;
-
+  
   constructor(private http: HttpClient) { }
 
-  getAllMunicipios(){
+  getAllUnidades(){
     const headers = {'Accept': 'application/json'};
-    return this.http.get(this.uri+'/municipios',{headers: headers});
+    return this.http.get(this.uri+'/unidades',{headers: headers});
   }
 
-  crearMunicipio(municipio: Municipio){
+  crearUnidad(unidad: Unidad){
     const headers = {'Content-Type': 'application/json'};
-    const body = JSON.stringify(municipio);
-    return this.http.post(this.uri+'/municipios',body,{headers});
+    const body = JSON.stringify(unidad);
+    return this.http.post(this.uri+'/unidades',body,{headers});
   }
 
-  updateMunicipio(municipio: Municipio){
+  updateUnidad(unidad: Unidad){
     const headers = {'Content-Type': 'application/json'};
-    const body = JSON.stringify(municipio);
-    return this.http.put(this.uri+'/municipios',body,{headers});
+    const body = JSON.stringify(unidad);
+    return this.http.put(this.uri+'/unidades',body,{headers});
   }
 
 }

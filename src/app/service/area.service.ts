@@ -17,6 +17,11 @@ export class AreaService {
     return this.http.get(this.uri+'/areas',{headers: headers});
   }
 
+  getAreasByOrganizacion(idOrganizacion: number){
+    const headers = {'Accept': 'application/json'};
+    return this.http.get(this.uri+'/areas/findByOrganizacion/'+idOrganizacion,{headers});
+  }
+
   crearArea(area: Area){
     const headers = {'Content-Type': 'application/json'};
     const body = JSON.stringify(area);
